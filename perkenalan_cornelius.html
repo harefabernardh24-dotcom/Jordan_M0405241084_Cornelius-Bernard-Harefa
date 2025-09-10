@@ -1,143 +1,132 @@
+<!--
+  File: perkenalan_cornelius.html
+  Instruksi: GANTI nilai NIM, PROXY, EMAIL, dan link GitHub sebelum mengunggah.
+-->
+
 <!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Perkenalan - Cornelius Bernard (AI, IPB)</title>
-  <meta name="description" content="Halaman perkenalan mahasiswa AI IPB University" />
+  <meta name="description" content="Halaman perkenalan mahasiswa Ilmu Komputer/AI IPB University" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg1: linear-gradient(135deg,#0f172a 0%, #0b1220 50%);
-      --glass: rgba(255,255,255,0.06);
+      --bg1: linear-gradient(135deg,#0f172a,#1e1b4b,#0b1220);
       --accent: #7c3aed;
-      --card-radius: 16px;
-      --maxw: 920px;
+      --accent2: #06b6d4;
+      --glass: rgba(255,255,255,0.06);
+      --radius: 18px;
     }
-    *{box-sizing:border-box;font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
-    body{margin:0;min-height:100vh;background:var(--bg1);color:#e6eef8;display:flex;align-items:center;justify-content:center;padding:32px}
-    .wrap{width:100%;max-width:var(--maxw);backdrop-filter: blur(6px);border-radius:20px;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6);}
-    header{display:flex;gap:20px;align-items:center}
-    .avatar{width:120px;height:120px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:36px;background:linear-gradient(135deg,var(--accent),#4f46e5);box-shadow:0 8px 20px rgba(76,29,149,0.3)}
-    .title h1{margin:0;font-size:22px;letter-spacing:0.2px}
-    .title p{margin:6px 0 0 0;opacity:0.9}
+    *{box-sizing:border-box;font-family:'Inter',sans-serif;margin:0;padding:0}
+    body{background:var(--bg1);color:#f1f5f9;line-height:1.6;overflow-x:hidden}
+    a{color:var(--accent2);text-decoration:none;transition:all .3s ease}
+    a:hover{text-decoration:underline}
 
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:20px}
-    .card{background:var(--glass);padding:16px;border-radius:var(--card-radius);}
+    header{position:fixed;top:0;left:0;width:100%;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(15,23,42,0.6);backdrop-filter:blur(10px);z-index:1000;}
+    header h1{font-size:20px;font-weight:700;color:white}
+    nav a{margin-left:24px;font-size:14px;font-weight:500;opacity:0.9}
 
-    .bio p{line-height:1.5;margin:8px 0}
-    dl{display:grid;grid-template-columns:120px 1fr;gap:8px 12px;margin:0}
-    dt{opacity:0.9;font-weight:600}
+    .hero{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px;}
+    .hero h2{font-size:38px;font-weight:700;margin-bottom:10px;animation:fadeUp 1s ease}
+    .hero p{opacity:0.85;font-size:16px;animation:fadeUp 1.4s ease}
+    .hero .tag{margin-top:20px;display:inline-block;padding:10px 20px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;font-weight:600;animation:fadeUp 1.8s ease}
+
+    section{max-width:900px;margin:0 auto;padding:100px 20px}
+    section h3{font-size:24px;font-weight:700;margin-bottom:20px;text-align:center}
+
+    .card{background:var(--glass);padding:24px;border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,0.5);margin-bottom:24px;transition:transform .3s ease,box-shadow .3s ease}
+    .card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,0.6)}
+
+    dl{display:grid;grid-template-columns:120px 1fr;gap:10px;margin-top:10px}
+    dt{font-weight:600;opacity:0.9}
     dd{margin:0}
 
-    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.04);font-size:13px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;justify-content:center}
+    .chip{padding:8px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));font-size:13px;color:white;font-weight:500;opacity:0;transform:scale(0.8);animation:popIn .6s forwards}
+    .chip:nth-child(1){animation-delay:.2s}
+    .chip:nth-child(2){animation-delay:.4s}
+    .chip:nth-child(3){animation-delay:.6s}
+    .chip:nth-child(4){animation-delay:.8s}
+    .chip:nth-child(5){animation-delay:1s}
+    .chip:nth-child(6){animation-delay:1.2s}
 
-    footer{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#4f46e5);border:none;color:white;font-weight:600;cursor:pointer}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    footer{padding:40px;text-align:center;opacity:0.8;font-size:14px}
 
-    /* responsive */
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .avatar{width:96px;height:96px;font-size:28px}
-    }
-
-    /* little animations */
-    .glow {animation:glow 3s ease-in-out infinite}
-    @keyframes glow{0%{box-shadow:0 6px 20px rgba(124,58,237,0.18)}50%{box-shadow:0 12px 40px rgba(124,58,237,0.32)}100%{box-shadow:0 6px 20px rgba(124,58,237,0.18)}}
+    /* animations */
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes popIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="avatar glow">CB</div>
-      <div class="title">
-        <h1>Cornelius Bernard</h1>
-        <p>Mahasiswa AI — IPB University</p>
-        <p style="margin-top:6px;font-size:13px;opacity:0.85">NIM: <strong id="nim">M0405241084</strong> • Proxy: <strong id="proxy">Jordan</strong></p>
-      </div>
-    </header>
+  <header>
+    <h1>Cornelius Bernard Harefa</h1>
+    <nav>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="grid">
-      <section class="card bio">
-        <h2 style="margin-top:0">Tentang Saya</h2>
-        <p>Halo! Saya Cornelius, mahasiswa Ilmu Komputer yang sedang mendalami bidang Artificial Intelligence dan Data Science. Saya tertarik mengembangkan solusi Machine Learning/AI yang berguna untuk dunia pendidikan dan industri. Bercita-cita untuk bisa bekerja di perusahaan teknologi besar seperti Google di masa depan.</p>
+  <section class="hero">
+    <h2>Hello! It's nice to meet you.</h2>
+    <p><i>want to know me closer..? </i></p>
+    <span class="tag">Get Started</span>
+  </section>
 
-        <h3 style="margin-bottom:8px">Detail Pendek</h3>
-        <dl>
-          <dt>Nama Lengkap</dt><dd>Cornelius Bernard</dd>
-          <dt>NIM</dt><dd id="dl-nim">M0405241084</dd>
-          <dt>Program Studi</dt><dd>AI — IPB University</dd>
-          <dt>Proxy</dt><dd id="dl-proxy">Jordan</dd>
-          <dt>Email</dt><dd><a id="mail" href="mailto:your.email@example.com" style="color:inherit;opacity:0.95">cournelyusharefa@apps.ipb.ac.id</a></dd>
-        </dl>
+  <section id="about">
+    <h3>About</h3>
+    <div class="card">
+      <p>Halo! Saya Cornelius, mahasiswa Ilmu Komputer yang sedang mendalami Artificial Intelligence dan Data Science. Saya tertarik mengembangkan solusi ML/AI untuk dunia pendidikan dan industri, dengan cita-cita bekerja di perusahaan teknologi besar seperti Google.</p>
+      <dl>
+        <dt>Nama Lengkap</dt><dd>Cornelius Bernard</dd>
+        <dt>NIM</dt><dd>M0405241084</dd>
+        <dt>Program Studi</dt><dd> Artificial Intelligence </dd>
+        <dt>Proxy</dt><dd>Jordan</dd>
+        <dt>Email</dt><dd><a href="mailto:your.email@example.com">cournelyusharefa@apps.ipb.ac.id</a></dd>
+      </dl>
+    </div>
+  </section>
 
-        <div style="margin-top:12px">
-          <strong>Minat</strong>
-          <div class="skills">
-            <div class="chip">Python</div>
-            <div class="chip">Machine Learning</div>
-            <div class="chip">Data Science</div>
-            <div class="chip">Git & GitHub</div>
-            <div class="chip">SQL</div>
-            <div class="chip">Web Dev</div>
-          </div>
-        </div>
+  <section id="skills">
+    <h3>Skills & Minat</h3>
+    <div class="skills">
+      <div class="chip">Python</div>
+      <div class="chip">Machine Learning</div>
+      <div class="chip">Data Science</div>
+      <div class="chip">C/C++</div>
+      <div class="chip">SQL</div>
+      <div class="chip">Web Development</div>
+    </div>
+  </section>
 
-        <footer>
-          <button class="btn" onclick="toggleCard()">Toggle Card Theme</button>
-          <button class="btn secondary" onclick="downloadHTML()">Download HTML</button>
-        </footer>
-      </section>
+  <section id="contact">
+    <h3>Contacts me here!</h3>
+    <div class="card">
+      <p>GitHub: <a href="https://github.com/Username/Jordan_M0405241084_Cornelius_Bernard" target="_blank">github.com/Username/Jordan_M0405241084_Cornelius_Bernard</a></p>
+      <p>LinkedIn: <a href="#">www.linkedin.com/in/corneliusbernard</a></p>
+      <hr style="margin:16px 0;opacity:0.1">
+      <ul style="margin-left:20px">
+        <li>Lulus dengan IPK tinggi, mendapat cumlaude dan riset di bidang Computer Vision / NLP.</li>
+        <li>Magang di perusahaan teknologi (internship).</li>
+        <li>Mendalami Deployment Machine Learning dan MLOps.</li>
+      </ul>
+    </div>
+  </section>
 
-      <aside class="card">
-        <h3 style="margin-top:0">Kontak & Link</h3>
-        <p style="margin-bottom:8px">GitHub: <a id="gh-link" href="https://github.com/Username/Repository" target="_blank" style="color:inherit;opacity:0.95">github.com/Username/Repository</a></p>
-        <p style="margin-bottom:8px">LinkedIn: <a href="#" style="color:inherit;opacity:0.95">https://www.linkedin.com/in/cornelius-bernard-047575323?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGLim7f5xTq27%2BvT%2BIjUlZw%3D%3D</a></p>
-
-        <hr style="opacity:0.06;margin:12px 0">
-        <h4>Goal Akademik & Karir</h4>
-        <ul style="margin:6px 0 0 18px">
-          <li>Lulus dengan IPK tinggi dan riset di bidang computer vision / NLP.</li>
-          <li>Magang di perusahaan teknologi (internship).</li>
-          <li>Belajar lebih dalam tentang Deployment ML dan MLOps.</li>
-        </ul>
+  <footer>
+    © 2025 Cornelius Bernard — All Rights Reserved
+  </footer>
 
   <script>
-    // Ganti kedua value default ini jika ingin langsung menyesuaikan dari browser
-    const DEFAULT_NIM = 'M000000000';
-    const DEFAULT_PROXY = 'NamaProxy';
-
-    // jika pengguna mau, bisa memanggil prompt untuk mengisi (tapi tidak otomatis dijalankan)
-    function setBasicInfo(nim, proxy){
-      document.getElementById('nim').textContent = nim || DEFAULT_NIM;
-      document.getElementById('dl-nim').textContent = nim || DEFAULT_NIM;
-      document.getElementById('proxy').textContent = proxy || DEFAULT_PROXY;
-      document.getElementById('dl-proxy').textContent = proxy || DEFAULT_PROXY;
-      // update GitHub link placeholder
-      const gh = document.getElementById('gh-link');
-      const username = 'Username';
-      const repo = (proxy || 'NamaProxy') + '_' + (nim || DEFAULT_NIM) + '_Cornelius_Bernard';
-      gh.href = `https://github.com/${username}/${repo}`;
-      gh.textContent = `github.com/${username}/${repo}`;
-    }
-
-    function toggleCard(){
-      document.querySelectorAll('.card').forEach(c=> c.style.background = c.style.background? '': 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))');
-      alert('Coba ganti NIM/proxy dengan setBasicInfo("M123456789","ProxyName") di konsol dev-tools jika mau cepat.')
-    }
-
-    function downloadHTML(){
-      const filename = 'perkenalan_cornelius.html';
-      const content = `<!doctype html>` + document.documentElement.outerHTML;
-      const blob = new Blob([content], {type: 'text/html'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    }
-
-    // inisialisasi default
-    setBasicInfo(DEFAULT_NIM, DEFAULT_PROXY);
+    // Smooth scroll untuk nav
+    document.querySelectorAll('nav a').forEach(link =>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+      });
+    });
   </script>
 </body>
 </html>
